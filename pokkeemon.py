@@ -21,7 +21,7 @@ def get_pokemon_img_url(name):
     pokemon_dict = get_pokemon_Infos(name)
     if pokemon_dict:
         return pokemon_dict['sprites']['other']['official-artwork']['front_default']
-
+# get a list
 def get_pokemon_list(limit=100, offset=0):
     url = 'https://pokeapi.co/api/v2/pokemon'
 

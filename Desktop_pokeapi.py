@@ -46,12 +46,18 @@ def main():
         image_path = os.path.join(images_dir, pokemon_name + '.png')
         if dwnld_img_from_url(image_url, image_path):
             img_pokemon['file'] = image_path
-        
+            btn_set_desktop.state(['!disabled'])
 
-    cbo_pokemon_sel.bind('<<Comboboxselected>>', handle_cbo_pokmon_sel)
+    cbo_pokemon_sel.bind('<<ComboboxSelected>>', handle_cbo_pokmon_sel)
+
+   
+    def btn_set_dsktop_click():
+        pokemon_name = cbo_pokemon_sel.get()
+        image_path = os.path.join(images_dir, pokemon_name + '.png')
+        set_desktop_bckgrnd_img(image_path)
 
 
-    btn_set_desktop = ttk.Button(frm, text='Set as Desktop Image')
+    btn_set_desktop = ttk.Button(frm, text='Set as Desktop Image', command=btn_set_dsktop_click)
     btn_set_desktop.state(['disabled'])
     btn_set_desktop.grid(row=2, column=0, padx=10, pady=10)
 # download and save image of pokemon
@@ -74,7 +80,13 @@ def main():
             print('Response code:', resp_msg.status_code)
             print(resp_msg.text)
         
+    def set_desktop_bckgrnd_img(path):
+        try:
+            ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
+        except:
+            print("Eroor setting dsktp bckgrnd img ")
 
+        
     root.mainloop()
 
 main()
