@@ -9,7 +9,7 @@ import ctypes
 import requests
 
 def main():
-
+####
 
     script_dir = sys.path[0]
     images_dir = os.path.join(script_dir, 'Images')
