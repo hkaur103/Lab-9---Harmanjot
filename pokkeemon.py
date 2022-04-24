@@ -3,6 +3,7 @@ import requests
 
 def get_pokemon_Infos(name):
 
+#Getting a dictionary from thr pokeapi
     print("Getting pokemon Info")
 
     poke_url = 'https://pokeapi.co/api/v2/pokemon/' + name
@@ -17,11 +18,13 @@ def get_pokemon_Infos(name):
         print('fail to get info',response.status_code)
         return 
 
+# function for geting pokemon images from pokemon dictionary
 def get_pokemon_img_url(name):
     pokemon_dict = get_pokemon_Infos(name)
     if pokemon_dict:
         return pokemon_dict['sprites']['other']['official-artwork']['front_default']
-# get a list
+
+# this function gets a list of 1000 pokemons
 def get_pokemon_list(limit=100, offset=0):
     url = 'https://pokeapi.co/api/v2/pokemon'
 
