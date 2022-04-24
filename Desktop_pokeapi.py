@@ -103,7 +103,7 @@ def main():
             print('Response code:', resp_msg.status_code)
             print(resp_msg.text)
 
-   # function to get a desktop      
+   # function to show a desktop image error if image not set   
     def set_desktop_bckgrnd_img(path):
         try:
             ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
