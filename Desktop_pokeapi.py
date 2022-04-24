@@ -92,7 +92,9 @@ def main():
         resp_msg = requests.get(url)
         if resp_msg.status_code == 200:
             try:
+                # getting response of image 
                 img_data = resp_msg.content
+                # here open returns an object of image path
                 with open(path, 'wb') as fp:
                     fp.write(img_data)
                 return path
@@ -106,6 +108,7 @@ def main():
    # function to show a desktop image error if image not set   
     def set_desktop_bckgrnd_img(path):
         try:
+            #(20,0,path,0) is s default value
             ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
         except:
             print("Eroor setting dsktp bckgrnd img ")
